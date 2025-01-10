@@ -1,0 +1,30 @@
+.heading {
+  font-family: "Mea Culpa", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 120px;
+}
+@media (width <= 755px) {
+  .heading {
+    font-size: 100px;
+  }
+}
+@media (width <= 640px) {
+  .heading {
+    font-size: 80px;
+  }
+}
+@media (width <= 530px) {
+  .heading {
+    font-size: 60px;
+  }
+}
+
+.paragraph {
+  font-size: 20px;
+  font-weight: 200;
+}
+
+.image {
+  width: 100%;
+}
