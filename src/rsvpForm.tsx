@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
 function RsvpForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     fetch("https://www.formbackend.com/f/8abd8f07b64133a2", {
       method: "POST",
@@ -24,7 +24,7 @@ function RsvpForm() {
 
         return response.json();
       })
-      .then((data) => {
+      .then(() => {
         // You can even use `data` here. Access `data.submission_text`, `data.values` etc.
         setSuccessMessage("Form submitted successfully");
       })
