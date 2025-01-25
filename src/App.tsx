@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./App.css";
-import RsvpForm from "./rsvpForm";
 import Heading from "./Heading";
 import Login from "./Login";
+import Body from "./Body";
 
 function App() {
   const [password, setPassword] = useState(
@@ -13,6 +13,7 @@ function App() {
 
   function passwordChanged(password: string) {
     setPassword(password);
+    window.localStorage.setItem("password", password);
   }
 
   return (
@@ -20,7 +21,7 @@ function App() {
       <Heading></Heading>
       <div>
         {loggedIn ? (
-          <RsvpForm></RsvpForm>
+          <Body></Body>
         ) : (
           <Login handleChange={passwordChanged}></Login>
         )}

@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Mea+Culpa&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Forum&display=swap");
 :root {
-  font-family: "EB Garamond", serif;
+  font-family: "Forum", serif;
   line-height: 1.5;
   font-weight: 400;
   font-size: 20px;
