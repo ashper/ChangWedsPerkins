@@ -1,0 +1,15 @@
+.bodyContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.tabs {
+  flex: 1 0 100%;
+  justify-content: center;
+  display: flex;
+}
+
+.panel {
+  flex: 1 0 100%;
+}

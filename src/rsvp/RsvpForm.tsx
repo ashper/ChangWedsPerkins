@@ -1,4 +1,5 @@
 import { FormEvent, useState } from "react";
+import Stepper from "./Stepper";
 
 function RsvpForm() {
   const [name, setName] = useState("");
@@ -35,6 +36,7 @@ function RsvpForm() {
 
   return (
     <>
+      <Stepper></Stepper>
       {successMessage.length == 0 && (
         <form onSubmit={handleSubmit}>
           <label htmlFor="name">Name</label>
@@ -58,7 +60,6 @@ function RsvpForm() {
           <button type="submit">Send</button>
         </form>
       )}
-
       {successMessage.length > 0 && <p>{successMessage}</p>}
     </>
   );
