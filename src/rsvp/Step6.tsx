@@ -1,16 +1,25 @@
-import { Button, ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { TextField } from "@mui/material";
+import { FormData } from "./FormData";
 
-function Step6({ nextStep }: { nextStep: () => void }) {
+function Step6({
+  formData,
+  handleFieldChange,
+}: {
+  formData: FormData;
+  handleFieldChange: (name: string, value: string) => void;
+}) {
   return (
     <div>
-      <div>How many guests are you bringing?</div>
-      <ToggleButtonGroup exclusive>
-        <ToggleButton value="1">1</ToggleButton>
-        <ToggleButton value="2">2</ToggleButton>
-        <ToggleButton value="3">3</ToggleButton>
-        <ToggleButton value="4">4</ToggleButton>
-      </ToggleButtonGroup>
-      <Button onClick={() => nextStep()}>Next</Button>
+      <TextField
+        multiline
+        rows={4}
+        fullWidth
+        value={formData.DietaryRestrictions}
+        label="Dietary restrictions or allergies"
+        onChange={(event) => {
+          handleFieldChange("DietaryRestrictions", event.target.value);
+        }}
+      ></TextField>
     </div>
   );
 }

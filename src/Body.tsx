@@ -3,7 +3,8 @@ import { useState } from "react";
 import BigImage from "./BigImage";
 import Travel from "./Travel";
 import "./Body.css";
-import RsvpForm from "./rsvp/rsvpForm";
+import RsvpForm from "./rsvp/RsvpForm";
+import OurStory from "./OurStory";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -53,8 +54,7 @@ function Body() {
           <Tab label="Home" />
           <Tab label="Our Story" />
           <Tab label="Travel" />
-          <Tab label="Things To Do" />
-          <Tab label="Photos" />
+          <Tab label="Wedding Day Details" />
           <Tab label="RSVP" />
         </Tabs>
       </div>
@@ -63,16 +63,13 @@ function Body() {
           <BigImage></BigImage>
         </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
-          Our story text here
+          <OurStory></OurStory>
         </CustomTabPanel>
         <CustomTabPanel value={value} index={2}>
           <Travel></Travel>
         </CustomTabPanel>
         <CustomTabPanel value={value} index={3}>
-          Things to do here
-        </CustomTabPanel>
-        <CustomTabPanel value={value} index={4}>
-          Photos here
+          Wedding day details here
         </CustomTabPanel>
         <CustomTabPanel value={value} index={5}>
           <RsvpForm></RsvpForm>

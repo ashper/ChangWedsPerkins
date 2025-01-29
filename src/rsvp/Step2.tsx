@@ -1,11 +1,23 @@
-import { Button, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
+import { FormData } from "./FormData";
 
-function Step2({ nextStep }: { nextStep: () => void }) {
+function Step2({
+  formData,
+  handleFieldChange,
+}: {
+  formData: FormData;
+  handleFieldChange: (name: string, value: string) => void;
+}) {
   return (
     <div>
-      <div>Which one of our lovely guests are you?</div>
-      <TextField></TextField>
-      <Button onClick={() => nextStep()}>Next</Button>
+      <TextField
+        value={formData.Name}
+        label="Which one of our lovely guests are you?"
+        fullWidth
+        onChange={(event) => {
+          handleFieldChange("Name", event.target.value);
+        }}
+      ></TextField>
     </div>
   );
 }
