@@ -43,7 +43,6 @@ function Body() {
           onChange={handleChange}
           sx={{
             "& .MuiTab-root": {
-              fontFamily: "Forum",
               color: "#231f20 !important",
             },
             "& .MuiTabs-indicator": {
