@@ -1,6 +1,6 @@
 import { BrowserView, MobileView } from "react-device-detect";
-import BrowserSite from "./BrowserSite";
-import MobileSite from "./MobileSite";
+import BrowserSite from "./Browser/BrowserSite";
+import MobileSite from "./Mobile/MobileSite";
 import "./App.css";
 
 function App() {

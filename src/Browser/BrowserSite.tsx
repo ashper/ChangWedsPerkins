@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Heading from "./Heading";
-import Login from "./Login";
+import Heading from "../Heading";
+import Login from "../Shared/Login";
 import Body from "./Body";
 
 function BrowserSite() {

@@ -1,4 +1,4 @@
-import BigImage from "./BigImage";
+import BigImage from "./Shared/BigImage";
 
 function Home() {
   return (

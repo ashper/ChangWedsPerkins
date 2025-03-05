@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Login from "./Login";
+import Login from "../Shared/Login";
 import {
   AppBar,
   Box,
@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import "./MobileSite.css";
+import Body from "./Body";
 
 function MobileSite() {
   const [password, setPassword] = useState(
@@ -27,6 +28,7 @@ function MobileSite() {
   }
 
   const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(0);
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
@@ -35,13 +37,31 @@ function MobileSite() {
   const DrawerList = (
     <Box sx={{ width: 200 }} role="presentation" onClick={toggleDrawer(false)}>
       <List>
-        {["Home", "Our Story", "Travel", "Day Details", "RSVP"].map((text) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        <ListItem disablePadding disableGutters>
+          <ListItemButton>
+            <ListItemText primary="Home" onClick={() => setValue(0)} />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding disableGutters>
+          <ListItemButton>
+            <ListItemText primary="Our Story" onClick={() => setValue(1)} />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding disableGutters>
+          <ListItemButton>
+            <ListItemText primary="Travel" onClick={() => setValue(2)} />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding disableGutters>
+          <ListItemButton>
+            <ListItemText primary="Day Details" onClick={() => setValue(3)} />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding disableGutters>
+          <ListItemButton>
+            <ListItemText primary="RSVP" onClick={() => setValue(4)} />
+          </ListItemButton>
+        </ListItem>
       </List>
     </Box>
   );
@@ -82,7 +102,7 @@ function MobileSite() {
       </Drawer>
       <div className="mobileBody">
         {loggedIn ? (
-          "Logged in"
+          <Body value={value}></Body>
         ) : (
           <Login handleChange={passwordChanged}></Login>
         )}

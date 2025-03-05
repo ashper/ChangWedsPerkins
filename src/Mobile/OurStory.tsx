@@ -1,53 +1,19 @@
-import LightGallery from "lightgallery/react";
-import lgZoom from "lightgallery/plugins/zoom";
-import "./OurStory.css";
-import { useEffect } from "react";
-import Masonry from "masonry-layout";
-import imagesLoaded from "imagesloaded";
-import lgHash from "lightgallery/plugins/hash";
-
 function OurStory() {
   const images = import.meta.glob(
-    "./assets/OurStory/*.{png,jpg,jpeg,svg,JPG,PNG}",
+    "../assets/OurStory/*.{png,jpg,jpeg,svg,JPG,PNG}",
     {
       eager: true,
     }
   );
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const imageList = Object.values(images).map((image: any, index) => (
-    <a key={index} className="gallery-item" data-src={image.default}>
-      <img
-        className="img-responsive"
-        src={image.default}
-        style={{ width: "380px", height: "100%" }}
-        loading="lazy"
-      />
-    </a>
+  const imageList = Object.values(images).map((image: any) => (
+    <img
+      src={image.default}
+      style={{ width: "100%", height: "100%" }}
+      loading="lazy"
+    />
   ));
-
-  useEffect(() => {
-    // Ensure the DOM element exists
-    const container = document.querySelector(".masonry-gallery");
-    if (container) {
-      // Initialize Masonry
-      const masonry = new Masonry(container, {
-        itemSelector: ".gallery-item",
-        columnWidth: 380,
-        gutter: 10,
-        percentPosition: true,
-        fitWidth: true,
-      });
-
-      // Use imagesLoaded with Masonry
-      imagesLoaded(container).on("progress", function () {
-        // Layout Masonry after each image loads
-        if (masonry.layout) {
-          masonry.layout();
-        }
-      });
-    }
-  }, []);
 
   return (
     <>
@@ -80,14 +46,7 @@ function OurStory() {
         risus, tempus a iaculis quis, dictum non erat.{" "}
       </p>
 
-      <LightGallery
-        elementClassNames={"masonry-gallery"}
-        plugins={[lgZoom, lgHash]}
-        speed={500}
-      >
-        <div className="grid-sizer"></div>
-        {imageList}
-      </LightGallery>
+      {imageList}
     </>
   );
 }

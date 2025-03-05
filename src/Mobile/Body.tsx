@@ -1,10 +1,8 @@
-import { Box, Tab, Tabs } from "@mui/material";
-import { useState } from "react";
-import BigImage from "./BigImage";
-import Travel from "./Travel";
+import { Box } from "@mui/material";
+import BigImage from "../Shared/BigImage";
 import "./Body.css";
-import RsvpForm from "./rsvp/RsvpForm";
 import OurStory from "./OurStory";
+import Travel from "./Travel";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -28,38 +26,13 @@ function CustomTabPanel(props: TabPanelProps) {
   );
 }
 
-function Body() {
-  const [value, setValue] = useState(0);
-
-  const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
-
+function Body({ value }: { value: number }) {
   return (
     <div className="bodyContainer">
-      <div className="tabs">
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          sx={{
-            "& .MuiTab-root": {
-              color: "#231f20 !important",
-            },
-            "& .MuiTabs-indicator": {
-              backgroundColor: "#231f20",
-            },
-          }}
-        >
-          <Tab label="Home" />
-          <Tab label="Our Story" />
-          <Tab label="Travel" />
-          <Tab label="Wedding Day Details" />
-          <Tab label="RSVP" />
-        </Tabs>
-      </div>
       <div className="panel">
         <CustomTabPanel value={value} index={0}>
           <BigImage></BigImage>
+          Mobile View!
         </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
           <OurStory></OurStory>
@@ -70,9 +43,7 @@ function Body() {
         <CustomTabPanel value={value} index={3}>
           Wedding day details here
         </CustomTabPanel>
-        <CustomTabPanel value={value} index={5}>
-          <RsvpForm></RsvpForm>
-        </CustomTabPanel>
+        <CustomTabPanel value={value} index={5}></CustomTabPanel>
       </div>
     </div>
   );
