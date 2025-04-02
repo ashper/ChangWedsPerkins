@@ -3,6 +3,7 @@ import BigImage from "../Shared/BigImage";
 import "./Body.css";
 import OurStory from "./OurStory";
 import Travel from "./Travel";
+import RSVP from "./RSVP";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -43,7 +44,9 @@ function Body({ value }: { value: number }) {
         <CustomTabPanel value={value} index={3}>
           Wedding day details here
         </CustomTabPanel>
-        <CustomTabPanel value={value} index={5}></CustomTabPanel>
+        <CustomTabPanel value={value} index={4}>
+          <RSVP></RSVP>
+        </CustomTabPanel>
       </div>
     </div>
   );
