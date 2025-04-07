@@ -3,8 +3,8 @@ import { useState } from "react";
 import BigImage from "../Shared/BigImage";
 import Travel from "./Travel";
 import "./Body.css";
-import RsvpForm from "./rsvp/RsvpForm";
 import OurStory from "./OurStory";
+import RSVP from "./RSVP";
 
 function CustomTabPanel({
   children,
@@ -69,8 +69,8 @@ function Body() {
         <CustomTabPanel value={value} index={3}>
           Wedding day details here
         </CustomTabPanel>
-        <CustomTabPanel value={value} index={5}>
-          <RsvpForm></RsvpForm>
+        <CustomTabPanel value={value} index={4}>
+          <RSVP />
         </CustomTabPanel>
       </div>
     </div>
