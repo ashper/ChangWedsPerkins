@@ -11,17 +11,83 @@ import {
   SelectChangeEvent,
   Stack,
   TextField,
+  Alert,
+  CircularProgress,
 } from "@mui/material";
 import { useState } from "react";
+
+interface FormData {
+  Name: string;
+  Attending: string;
+  NumberOfGuests?: string;
+  DietaryRequirements?: string;
+  Whatsapp?: string;
+  Email?: string;
+  ContactPreference?: string;
+  ExtraGuest1?: string;
+  ExtraGuest2?: string;
+  ExtraGuest3?: string;
+  ExtraGuest4?: string;
+  ExtraGuest5?: string;
+  ExtraGuest6?: string;
+  ExtraGuest7?: string;
+  ExtraGuest8?: string;
+  ExtraGuest9?: string;
+}
 
 function RSVPForm() {
   const [attending, setAttending] = useState("true");
   const [submitted, setSubmitted] = useState(
     window.localStorage.getItem("submitted")
   );
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [formErrors, setFormErrors] = useState<
+    Partial<Record<keyof FormData, string>>
+  >({});
 
-  function handleSubmit(formData: FormData) {
-    const formValues = Object.fromEntries(formData);
+  function validateForm(formData: FormData): boolean {
+    const errors: Partial<Record<keyof FormData, string>> = {};
+
+    if (!formData.Name?.trim()) {
+      errors.Name = "Name is required";
+    }
+
+    if (attending === "true") {
+      if (!formData.Email?.trim() && !formData.Whatsapp?.trim()) {
+        errors.Email = "Either email or WhatsApp is required";
+        errors.Whatsapp = "Either email or WhatsApp is required";
+      }
+
+      if (
+        formData.Email &&
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.Email)
+      ) {
+        errors.Email = "Please enter a valid email address";
+      }
+
+      if (formData.Whatsapp && !/^\+?[\d\s-]{10,}$/.test(formData.Whatsapp)) {
+        errors.Whatsapp = "Please enter a valid phone number";
+      }
+    }
+
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
+  }
+
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setError(null);
+
+    const formData = new FormData(event.currentTarget);
+    const formValues = Object.fromEntries(formData) as unknown as FormData;
+
+    if (!validateForm(formValues)) {
+      return;
+    }
+
+    setLoading(true);
+
     fetch("https://www.formbackend.com/f/8abd8f07b64133a2", {
       method: "POST",
       headers: {
@@ -32,11 +98,10 @@ function RSVPForm() {
     })
       .then((response) => {
         if (response.status === 422) {
-          throw new Error("Validation error");
+          throw new Error("Please check your form inputs and try again");
         } else if (!response.ok) {
-          throw new Error("Something went wrong");
+          throw new Error("Something went wrong. Please try again later.");
         }
-
         return response.json();
       })
       .then(() => {
@@ -45,6 +110,10 @@ function RSVPForm() {
       })
       .catch((error) => {
         console.error("Error:", error);
+        setError(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }
 
@@ -59,9 +128,23 @@ function RSVPForm() {
   }
 
   return (
-    <form action={handleSubmit}>
-      <Stack spacing={2}>
-        <TextField label="Name" name="Name"></TextField>
+    <form onSubmit={handleSubmit} noValidate>
+      <Stack spacing={3}>
+        {error && (
+          <Alert severity="error" onClose={() => setError(null)}>
+            {error}
+          </Alert>
+        )}
+
+        <TextField
+          label="Name"
+          name="Name"
+          required
+          error={!!formErrors.Name}
+          helperText={formErrors.Name}
+          fullWidth
+        />
+
         <FormControl>
           <FormLabel>Attendance</FormLabel>
           <RadioGroup
@@ -82,19 +165,26 @@ function RSVPForm() {
           </RadioGroup>
         </FormControl>
 
-        {attending === "true" ? <Details /> : ""}
+        {attending === "true" && <Details formErrors={formErrors} />}
 
-        <Button type="submit" variant="outlined">
-          RSVP
+        <Button
+          type="submit"
+          variant="contained"
+          disabled={loading}
+          sx={{ mt: 2 }}
+        >
+          {loading ? <CircularProgress size={24} /> : "RSVP"}
         </Button>
       </Stack>
     </form>
   );
 }
 
-export default RSVPForm;
+interface DetailsProps {
+  formErrors: Partial<Record<keyof FormData, string>>;
+}
 
-function Details() {
+function Details({ formErrors }: DetailsProps) {
   return (
     <>
       <Guests />
@@ -104,18 +194,33 @@ function Details() {
         multiline
         minRows={2}
         maxRows={4}
-      ></TextField>
+        fullWidth
+      />
 
-      <TextField label="Whatsapp" name="Whatsapp" type="tel"></TextField>
+      <TextField
+        label="Whatsapp"
+        name="Whatsapp"
+        type="tel"
+        error={!!formErrors.Whatsapp}
+        helperText={formErrors.Whatsapp}
+        fullWidth
+      />
 
-      <TextField label="Email" name="Email" type="email"></TextField>
+      <TextField
+        label="Email"
+        name="Email"
+        type="email"
+        error={!!formErrors.Email}
+        helperText={formErrors.Email}
+        fullWidth
+      />
 
       <FormControl fullWidth>
         <InputLabel>Preferred Contact Method</InputLabel>
         <Select
           name="ContactPreference"
           label="Preferred Contact Method"
-          defaultValue={"Whatsapp"}
+          defaultValue="Whatsapp"
         >
           <MenuItem value="Whatsapp">Whatsapp</MenuItem>
           <MenuItem value="Email">Email</MenuItem>
@@ -177,3 +282,5 @@ function ThankYou() {
     </>
   );
 }
+
+export default RSVPForm;
