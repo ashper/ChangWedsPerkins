@@ -4,7 +4,6 @@ export function TravelDetails() {
       <p>
         We are getting married at the lovely Claudine restaurant in Dempsey.
       </p>
-      <p>Directions</p>
       <p>
         Driving: Claudine, 39C Harding Road, Singapore, 249541 (ample parking)
       </p>

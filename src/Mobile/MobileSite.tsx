@@ -44,7 +44,7 @@ function MobileSite() {
         </ListItem>
         <ListItem disablePadding disableGutters>
           <ListItemButton>
-            <ListItemText primary="Our Story" onClick={() => setValue(1)} />
+            <ListItemText primary="FAQ" onClick={() => setValue(1)} />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding disableGutters>
@@ -54,12 +54,7 @@ function MobileSite() {
         </ListItem>
         <ListItem disablePadding disableGutters>
           <ListItemButton>
-            <ListItemText primary="Day Details" onClick={() => setValue(3)} />
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding disableGutters>
-          <ListItemButton>
-            <ListItemText primary="RSVP" onClick={() => setValue(4)} />
+            <ListItemText primary="RSVP" onClick={() => setValue(3)} />
           </ListItemButton>
         </ListItem>
       </List>
@@ -73,6 +68,7 @@ function MobileSite() {
           "--AppBar-background": "#f4ede7",
           "--AppBar-color": "#231f20",
         }}
+        elevation={0}
       >
         <Toolbar>
           <IconButton
@@ -85,7 +81,7 @@ function MobileSite() {
           >
             <MenuIcon />
           </IconButton>
-          A & K
+          AP & KQ
         </Toolbar>
       </AppBar>
       <Drawer
@@ -102,9 +98,15 @@ function MobileSite() {
       </Drawer>
       <div className="mobileBody">
         {loggedIn ? (
-          <Body value={value}></Body>
+          <Body
+            value={value}
+            tabChange={(value: number) => setValue(value)}
+          ></Body>
         ) : (
-          <Login handleChange={passwordChanged}></Login>
+          <div style={{ padding: "20px" }}>
+            {" "}
+            <Login handleChange={passwordChanged}></Login>
+          </div>
         )}
       </div>
     </>

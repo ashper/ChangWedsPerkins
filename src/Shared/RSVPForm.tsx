@@ -2,7 +2,6 @@ import {
   Button,
   FormControl,
   FormControlLabel,
-  FormLabel,
   InputLabel,
   MenuItem,
   Radio,
@@ -14,32 +13,42 @@ import {
   Alert,
   CircularProgress,
 } from "@mui/material";
+import { MuiTelInput } from "mui-tel-input";
 import { useState } from "react";
 
 interface FormData {
-  Name: string;
   Attending: string;
   NumberOfGuests?: string;
-  DietaryRequirements?: string;
   Whatsapp?: string;
   Email?: string;
   ContactPreference?: string;
-  ExtraGuest1?: string;
-  ExtraGuest2?: string;
-  ExtraGuest3?: string;
-  ExtraGuest4?: string;
-  ExtraGuest5?: string;
-  ExtraGuest6?: string;
-  ExtraGuest7?: string;
-  ExtraGuest8?: string;
-  ExtraGuest9?: string;
+  Guest1?: string;
+  Guest2?: string;
+  Guest3?: string;
+  Guest4?: string;
+  Guest5?: string;
+  Guest6?: string;
+  Guest7?: string;
+  Guest8?: string;
+  Guest9?: string;
+  DietaryRequirementsGuest1?: string;
+  DietaryRequirementsGuest2?: string;
+  DietaryRequirementsGuest3?: string;
+  DietaryRequirementsGuest4?: string;
+  DietaryRequirementsGuest5?: string;
+  DietaryRequirementsGuest6?: string;
+  DietaryRequirementsGuest7?: string;
+  DietaryRequirementsGuest8?: string;
+  DietaryRequirementsGuest9?: string;
 }
 
 function RSVPForm() {
   const [attending, setAttending] = useState("true");
+
   const [submitted, setSubmitted] = useState(
     window.localStorage.getItem("submitted")
   );
+  const [telephone, setTelephone] = useState("+65");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [formErrors, setFormErrors] = useState<
@@ -49,14 +58,16 @@ function RSVPForm() {
   function validateForm(formData: FormData): boolean {
     const errors: Partial<Record<keyof FormData, string>> = {};
 
-    if (!formData.Name?.trim()) {
-      errors.Name = "Name is required";
+    if (!formData.Guest1?.trim()) {
+      errors.Guest1 = "Name is required";
     }
 
     if (attending === "true") {
-      if (!formData.Email?.trim() && !formData.Whatsapp?.trim()) {
-        errors.Email = "Either email or WhatsApp is required";
-        errors.Whatsapp = "Either email or WhatsApp is required";
+      if (!formData.Email?.trim()) {
+        errors.Email = "Email is required";
+      }
+      if (!formData.Whatsapp?.trim()) {
+        errors.Whatsapp = "WhatsApp is required";
       }
 
       if (
@@ -69,20 +80,43 @@ function RSVPForm() {
       if (formData.Whatsapp && !/^\+?[\d\s-]{10,}$/.test(formData.Whatsapp)) {
         errors.Whatsapp = "Please enter a valid phone number";
       }
+      CheckName(2, formData, errors);
+      CheckName(3, formData, errors);
+      CheckName(4, formData, errors);
+      CheckName(5, formData, errors);
+      CheckName(6, formData, errors);
+      CheckName(7, formData, errors);
+      CheckName(8, formData, errors);
+      CheckName(9, formData, errors);
     }
 
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
   }
 
+  function CheckName(
+    n: number,
+    formData: FormData,
+    errors: Partial<Record<keyof FormData, string>>
+  ) {
+    if (Number(formData.NumberOfGuests) >= n) {
+      const guest = ("Guest" + n) as keyof typeof formData;
+      if (!formData[guest]?.trim()) {
+        errors[guest] = "Name is required";
+      }
+    }
+  }
+
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    console.log("submit");
     event.preventDefault();
     setError(null);
 
     const formData = new FormData(event.currentTarget);
     const formValues = Object.fromEntries(formData) as unknown as FormData;
-
+    console.log(formValues);
     if (!validateForm(formValues)) {
+      console.log("errors", formErrors);
       return;
     }
 
@@ -136,17 +170,7 @@ function RSVPForm() {
           </Alert>
         )}
 
-        <TextField
-          label="Name"
-          name="Name"
-          required
-          error={!!formErrors.Name}
-          helperText={formErrors.Name}
-          fullWidth
-        />
-
         <FormControl>
-          <FormLabel>Attendance</FormLabel>
           <RadioGroup
             name="Attending"
             value={attending}
@@ -165,7 +189,23 @@ function RSVPForm() {
           </RadioGroup>
         </FormControl>
 
-        {attending === "true" && <Details formErrors={formErrors} />}
+        {attending === "true" && (
+          <Details
+            formErrors={formErrors}
+            telephone={telephone}
+            telephoneChanged={(number) => setTelephone(number)}
+          />
+        )}
+        {attending !== "true" && (
+          <TextField
+            label="Name"
+            name="Name"
+            required
+            error={!!formErrors.Guest1}
+            helperText={formErrors.Guest1}
+            fullWidth
+          />
+        )}
 
         <Button
           type="submit"
@@ -182,29 +222,23 @@ function RSVPForm() {
 
 interface DetailsProps {
   formErrors: Partial<Record<keyof FormData, string>>;
+  telephone: string;
+  telephoneChanged: (tel: string) => void;
 }
 
-function Details({ formErrors }: DetailsProps) {
+function Details({ formErrors, telephone, telephoneChanged }: DetailsProps) {
   return (
     <>
-      <Guests />
-      <TextField
-        label="Dietary Requirements"
-        name="DietaryRequirements"
-        multiline
-        minRows={2}
-        maxRows={4}
-        fullWidth
-      />
+      <Guests formErrors={formErrors} />
 
-      <TextField
-        label="Whatsapp"
+      <MuiTelInput
+        value={telephone}
+        onChange={telephoneChanged}
+        label="WhatsApp"
         name="Whatsapp"
-        type="tel"
         error={!!formErrors.Whatsapp}
         helperText={formErrors.Whatsapp}
-        fullWidth
-      />
+      ></MuiTelInput>
 
       <TextField
         label="Email"
@@ -230,12 +264,34 @@ function Details({ formErrors }: DetailsProps) {
   );
 }
 
-function Guests() {
+function Guests({
+  formErrors,
+}: {
+  formErrors: Partial<Record<keyof FormData, string>>;
+}) {
   const [numberOfGuests, setNumberOfGuests] = useState("1");
 
   const handleNumberOfGuestsChange = (event: SelectChangeEvent) => {
     setNumberOfGuests(event.target.value as string);
   };
+
+  function GetError(
+    name: string,
+    formErrors: Partial<Record<keyof FormData, string>>
+  ): boolean {
+    const guest = name as keyof typeof formErrors;
+    return !!formErrors[guest];
+  }
+  function GetErrorText(
+    name: string,
+    formErrors: Partial<Record<keyof FormData, string>>
+  ): string {
+    const guest = name as keyof typeof formErrors;
+    if (formErrors[guest]) {
+      return formErrors[guest];
+    }
+    return "";
+  }
 
   return (
     <>
@@ -260,16 +316,25 @@ function Guests() {
         </Select>
       </FormControl>
 
-      {Number(numberOfGuests) > 1 &&
-        new Array(Number(numberOfGuests) - 1)
-          .fill("")
-          .map((_, index) => (
-            <TextField
-              key={index}
-              label={"Guest " + (index + 2)}
-              name={"ExtraGuest" + (index + 1)}
-            ></TextField>
-          ))}
+      {new Array(Number(numberOfGuests)).fill("").map((_, index) => (
+        <>
+          <TextField
+            key={index}
+            label={"Guest " + (index + 1)}
+            name={"Guest" + (index + 1)}
+            error={GetError("Guest" + (index + 1), formErrors)}
+            helperText={GetErrorText("Guest" + (index + 1), formErrors)}
+          />
+          <TextField
+            label={"Dietary Requirements Guest " + (index + 1)}
+            name={"DietaryRequirementsGuest" + (index + 1)}
+            multiline
+            minRows={2}
+            maxRows={4}
+            fullWidth
+          />
+        </>
+      ))}
     </>
   );
 }
