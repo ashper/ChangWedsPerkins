@@ -14,6 +14,9 @@ dependencies:
   '@fontsource/roboto':
     specifier: ^5.2.5
     version: 5.2.5
+  '@leenguyen/react-flip-clock-countdown':
+    specifier: ^1.6.1
+    version: 1.6.1(react@19.1.0)
   '@mui/icons-material':
     specifier: ^6.4.10
     version: 6.4.11(@mui/material@6.4.11)(@types/react@19.1.4)(react@19.1.0)
@@ -755,6 +758,16 @@ packages:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
+  /@leenguyen/react-flip-clock-countdown@1.6.1(react@19.1.0):
+    resolution: {integrity: sha512-4ZgUuFu+3TVH8sQgSFwrePUUTKrVXVjjYTyzrpPQu0ig4N1qZ3deK0s0Y1L4HFd8xuItRcS4SVR0MK5GS3j4Rw==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      react: '>= 16.13.0'
+    dependencies:
+      clsx: 1.2.1
+      react: 19.1.0
+    dev: false
+
   /@mui/core-downloads-tracker@6.4.11:
     resolution: {integrity: sha512-CzAQs9CTzlwbsF9ZYB4o4lLwBv1/qNE264NjuYao+ctAXsmlPtYa8RtER4UsUXSMxNN9Qi+aQdYcKl2sUpnmAw==}
     dev: false
@@ -1432,6 +1445,11 @@ packages:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
     dev: true
+
+  /clsx@1.2.1:
+    resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
+    engines: {node: '>=6'}
+    dev: false
 
   /clsx@2.1.1:
     resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}

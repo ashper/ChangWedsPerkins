@@ -1,10 +1,11 @@
 import { Box, Tab, Tabs } from "@mui/material";
 import { useState } from "react";
-import BigImage from "../Shared/BigImage";
 import Travel from "./Travel";
 import "./Body.css";
-import OurStory from "./OurStory";
 import RSVP from "./RSVP";
+import MoreOfUs from "./MoreOfUs";
+import FAQ from "./FAQ";
+import Home from "./Home";
 
 function CustomTabPanel({
   children,
@@ -50,24 +51,24 @@ function Body() {
           }}
         >
           <Tab label="Home" />
-          <Tab label="Our Story" />
+          <Tab label="FAQs" />
+          <Tab label="More Of Us" />
           <Tab label="Travel" />
-          <Tab label="Wedding Day Details" />
           <Tab label="RSVP" />
         </Tabs>
       </div>
       <div className="panel">
         <CustomTabPanel value={value} index={0}>
-          <BigImage></BigImage>
+          <Home></Home>
         </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
-          <OurStory></OurStory>
+          <FAQ></FAQ>
         </CustomTabPanel>
         <CustomTabPanel value={value} index={2}>
-          <Travel></Travel>
+          <MoreOfUs></MoreOfUs>
         </CustomTabPanel>
         <CustomTabPanel value={value} index={3}>
-          Wedding day details here
+          <Travel></Travel>
         </CustomTabPanel>
         <CustomTabPanel value={value} index={4}>
           <RSVP />

@@ -2,6 +2,7 @@ import { useState } from "react";
 import Heading from "../Heading";
 import Login from "../Shared/Login";
 import Body from "./Body";
+import "./BrowserSite.css";
 
 function BrowserSite() {
   const [password, setPassword] = useState(
@@ -16,7 +17,7 @@ function BrowserSite() {
   }
 
   return (
-    <>
+    <div className="browserRoot">
       <Heading></Heading>
       <div>
         {loggedIn ? (
@@ -25,7 +26,7 @@ function BrowserSite() {
           <Login handleChange={passwordChanged}></Login>
         )}
       </div>
-    </>
+    </div>
   );
 }
 

@@ -6,7 +6,7 @@ import { createTheme, ThemeProvider } from "@mui/material";
 
 const THEME = createTheme({
   typography: {
-    fontFamily: `"Forum"`,
+    fontFamily: `"Literata"`,
   },
 });
 

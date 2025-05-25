@@ -35,7 +35,9 @@ function FAQ() {
           <Typography component="span">What date should I rsvp by?</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>Please RSVP by June 30th Monday.</Typography>
+          <Typography style={{ textAlign: "left" }}>
+            Please RSVP by June 30th Monday.
+          </Typography>
         </AccordionDetails>
       </Accordion>
       <Accordion
@@ -49,7 +51,7 @@ function FAQ() {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          <Typography style={{ textAlign: "left" }}>
             There is free on-site parking at Claudine and in the surrounding
             vicinity.
           </Typography>
@@ -66,7 +68,7 @@ function FAQ() {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          <Typography style={{ textAlign: "left" }}>
             Our reception and ceremony will be fully indoors and air-conditioned
             but the outdoor garden terrace will be open for welcome refreshments
             and light bites.
@@ -82,7 +84,7 @@ function FAQ() {
           <Typography component="span">What is your dress-code?</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          <Typography style={{ textAlign: "left" }}>
             While there are no color restrictions (except white, of course!),
             our dress-code is black tie optional. Please dress your best! While
             tuxedos and gowns are encouraged, suits and midi- or knee-length
@@ -101,7 +103,7 @@ function FAQ() {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          <Typography style={{ textAlign: "left" }}>
             Welcome canapés and bubbly at La Terrace will begin from 11 AM. We
             will also have a video phone book at guest registration and we would
             love for you to leave us a video message! Doors to the solemnisation
@@ -126,7 +128,7 @@ function FAQ() {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          <Typography style={{ textAlign: "left" }}>
             We kindly ask for your cooperation to keep our ceremony “unplugged”
             and refrain from using any mobile phones, cameras or recording
             devices. Our spectacular photographers and videographers will
@@ -149,14 +151,14 @@ function FAQ() {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          <Typography style={{ textAlign: "left" }}>
             Please check the wedding invitation for the names of all invited
             guests. As our wedding is an intimate and cozy event, we will not be
             accommodating additional guests unless clearly stated on the invite!
           </Typography>
         </AccordionDetails>
       </Accordion>
-      <Accordion
+      {/* <Accordion
         sx={{
           bgcolor: "#f4ede7",
         }}
@@ -167,9 +169,9 @@ function FAQ() {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>...</Typography>
+          <Typography style={{ textAlign: "left" }}>...</Typography>
         </AccordionDetails>
-      </Accordion>
+      </Accordion> */}
       <Accordion
         sx={{
           bgcolor: "#f4ede7",
@@ -181,8 +183,7 @@ function FAQ() {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
-            {" "}
+          <Typography style={{ textAlign: "left" }}>
             We will not have a traditional gift registry and your presence is
             our greatest gift of all! In lieu of gifts, we will have a cash
             registry box that will be available at the guest registration table

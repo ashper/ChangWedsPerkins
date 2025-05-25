@@ -10,6 +10,7 @@ import {
   ListItemButton,
   ListItemText,
   Toolbar,
+  Typography,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import "./MobileSite.css";
@@ -44,17 +45,22 @@ function MobileSite() {
         </ListItem>
         <ListItem disablePadding disableGutters>
           <ListItemButton>
-            <ListItemText primary="FAQ" onClick={() => setValue(1)} />
+            <ListItemText primary="FAQs" onClick={() => setValue(1)} />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding disableGutters>
           <ListItemButton>
-            <ListItemText primary="Travel" onClick={() => setValue(2)} />
+            <ListItemText primary="More Of Us" onClick={() => setValue(2)} />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding disableGutters>
           <ListItemButton>
-            <ListItemText primary="RSVP" onClick={() => setValue(3)} />
+            <ListItemText primary="Travel" onClick={() => setValue(3)} />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding disableGutters>
+          <ListItemButton>
+            <ListItemText primary="RSVP" onClick={() => setValue(4)} />
           </ListItemButton>
         </ListItem>
       </List>
@@ -62,7 +68,7 @@ function MobileSite() {
   );
 
   return (
-    <>
+    <div className="mobileRoot">
       <AppBar
         sx={{
           "--AppBar-background": "#f4ede7",
@@ -81,7 +87,7 @@ function MobileSite() {
           >
             <MenuIcon />
           </IconButton>
-          AP & KQ
+          <Typography style={{ fontSize: "28px" }}>AP & KQ</Typography>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -109,7 +115,7 @@ function MobileSite() {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 }
 

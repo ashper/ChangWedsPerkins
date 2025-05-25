@@ -31,6 +31,7 @@ interface FormData {
   Guest7?: string;
   Guest8?: string;
   Guest9?: string;
+  Guest10?: string;
   DietaryRequirementsGuest1?: string;
   DietaryRequirementsGuest2?: string;
   DietaryRequirementsGuest3?: string;
@@ -40,6 +41,7 @@ interface FormData {
   DietaryRequirementsGuest7?: string;
   DietaryRequirementsGuest8?: string;
   DietaryRequirementsGuest9?: string;
+  DietaryRequirementsGuest10?: string;
 }
 
 function RSVPForm() {

@@ -1,10 +1,10 @@
-import { Box, Button } from "@mui/material";
-import BigImage from "../Shared/BigImage";
+import { Box } from "@mui/material";
 import "./Body.css";
 import Travel from "./Travel";
 import RSVP from "./RSVP";
-import Countdown from "react-countdown";
 import FAQ from "./FAQ";
+import MoreOfUs from "./MoreOfUs";
+import LandingPage from "./LandingPage";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -32,15 +32,6 @@ function CustomTabPanel(props: TabPanelProps) {
   );
 }
 
-const renderer = ({ days, hours }: { days: number; hours: number }) => {
-  // Render a countdown
-  return (
-    <span>
-      {days} days {hours} hours
-    </span>
-  );
-};
-
 function Body({
   value,
   tabChange,
@@ -48,39 +39,25 @@ function Body({
   value: number;
   tabChange: (value: number) => void;
 }) {
-  const weddingDate = new Date(2025, 8, 2);
   return (
     <div className="bodyContainer">
       <div className="panel">
         <CustomTabPanel value={value} index={0}>
-          <BigImage></BigImage>
-          <p>
-            {" "}
-            <Countdown date={weddingDate} renderer={renderer} /> to 2nd August
-            2025!
-            <br />
-            <Button
-              variant="contained"
-              sx={{ mt: 2 }}
-              style={{ backgroundColor: "#5c7d74" }}
-              onClick={() => tabChange(3)}
-            >
-              RSVP
-            </Button>
-          </p>
+          <LandingPage tabChange={(arg0) => tabChange(arg0)}></LandingPage>
         </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
           <FAQ></FAQ>
         </CustomTabPanel>
         <CustomTabPanel value={value} index={2}>
-          <div style={{ padding: "20px" }}>
-            {" "}
-            <Travel></Travel>
-          </div>
+          <MoreOfUs></MoreOfUs>
         </CustomTabPanel>
         <CustomTabPanel value={value} index={3}>
           <div style={{ padding: "20px" }}>
-            {" "}
+            <Travel></Travel>
+          </div>
+        </CustomTabPanel>
+        <CustomTabPanel value={value} index={4}>
+          <div style={{ padding: "20px" }}>
             <RSVP></RSVP>
           </div>
         </CustomTabPanel>

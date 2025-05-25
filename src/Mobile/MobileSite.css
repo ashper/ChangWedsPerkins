@@ -1,3 +1,9 @@
 .mobileBody {
-  padding-top: 65px;
+  padding-top: 56px;
+}
+.mobileRoot {
+  margin: 0px;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
 }

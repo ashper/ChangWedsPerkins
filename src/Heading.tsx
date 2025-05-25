@@ -7,7 +7,7 @@ function Heading() {
   const days = Math.round((weddingDay.getTime() - now.getTime()) / one_day);
   return (
     <>
-      <div className="heading">Chang & Perkins</div>
+      <div className="heading">Kaiqing & Ashley</div>
       <div className="paragraph">2ND AUGUST 2025 • CLAUDINE, SINGAPORE </div>
       <div className="paragraph">{`${days} DAYS TO GO!`}</div>
     </>
