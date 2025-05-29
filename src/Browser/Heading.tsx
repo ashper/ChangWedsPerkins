@@ -1,3 +1,4 @@
+import LanguageSwitcher from "../Shared/LanguageSwitcher";
 import "./Heading.css";
 
 function Heading() {
@@ -7,9 +8,12 @@ function Heading() {
   const days = Math.round((weddingDay.getTime() - now.getTime()) / one_day);
   return (
     <>
-      <div className="heading">Kaiqing & Ashley</div>
+      {/* <div className="heading">Kaiqing & Ashley</div> */}
       <div className="paragraph">
         2ND AUGUST 2025 • CLAUDINE, SINGAPORE • {`${days} DAYS TO GO!`}{" "}
+      </div>
+      <div style={{ position: "relative", top: "0px", right: "0px" }}>
+        <LanguageSwitcher></LanguageSwitcher>
       </div>
     </>
   );

@@ -1,14 +1,13 @@
+import { useTranslation } from "react-i18next";
+
 export function TravelDetails() {
+  const { t } = useTranslation();
   return (
     <>
-      <p>
-        We are getting married at the lovely Claudine restaurant in Dempsey.
-      </p>
-      <p>
-        Driving: Claudine, 39C Harding Road, Singapore, 249541 (ample parking)
-      </p>
-      <p>MRT: Napier TE12 (15 minute walk)</p>
-      <p>Bus: Bef Tyersall Ave (5 minute walk)</p>
+      <p>{t("TravelDetails.p1")}</p>
+      <p>{t("TravelDetails.p2")}</p>
+      <p>{t("TravelDetails.p3")}</p>
+      <p>{t("TravelDetails.p4")}</p>
     </>
   );
 }

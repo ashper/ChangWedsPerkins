@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import "./main.css";
 import App from "./App.tsx";
 import { createTheme, ThemeProvider } from "@mui/material";
+import "./i18n.tsx";
 
 const THEME = createTheme({
   typography: {
