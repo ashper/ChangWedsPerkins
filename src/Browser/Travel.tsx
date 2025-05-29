@@ -6,6 +6,7 @@ function Travel() {
     <>
       <TravelDetails />
       <Map height="600px" />
+      <br />
     </>
   );
 }

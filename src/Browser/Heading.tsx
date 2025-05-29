@@ -8,8 +8,9 @@ function Heading() {
   return (
     <>
       <div className="heading">Kaiqing & Ashley</div>
-      <div className="paragraph">2ND AUGUST 2025 • CLAUDINE, SINGAPORE </div>
-      <div className="paragraph">{`${days} DAYS TO GO!`}</div>
+      <div className="paragraph">
+        2ND AUGUST 2025 • CLAUDINE, SINGAPORE • {`${days} DAYS TO GO!`}{" "}
+      </div>
     </>
   );
 }

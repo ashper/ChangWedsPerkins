@@ -4,7 +4,7 @@ import Travel from "./Travel";
 import RSVP from "./RSVP";
 import FAQ from "./FAQ";
 import MoreOfUs from "./MoreOfUs";
-import LandingPage from "./LandingPage";
+import Home from "./Home";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -43,7 +43,7 @@ function Body({
     <div className="bodyContainer">
       <div className="panel">
         <CustomTabPanel value={value} index={0}>
-          <LandingPage tabChange={(arg0) => tabChange(arg0)}></LandingPage>
+          <Home tabChange={(arg0) => tabChange(arg0)}></Home>
         </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
           <FAQ></FAQ>
