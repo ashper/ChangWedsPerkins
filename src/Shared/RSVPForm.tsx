@@ -13,8 +13,10 @@ import {
   Alert,
   CircularProgress,
 } from "@mui/material";
+import { TFunction } from "i18next";
 import { MuiTelInput } from "mui-tel-input";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 interface FormData {
   Attending: string;
@@ -45,6 +47,7 @@ interface FormData {
 }
 
 function RSVPForm() {
+  const { t } = useTranslation();
   const [attending, setAttending] = useState("true");
 
   const [submitted, setSubmitted] = useState(
@@ -61,26 +64,26 @@ function RSVPForm() {
     const errors: Partial<Record<keyof FormData, string>> = {};
 
     if (!formData.Guest1?.trim()) {
-      errors.Guest1 = "Name is required";
+      errors.Guest1 = t("RSVP.Errors.Name");
     }
 
     if (attending === "true") {
       if (!formData.Email?.trim()) {
-        errors.Email = "Email is required";
+        errors.Email = t("RSVP.Errors.Email");
       }
       if (!formData.Whatsapp?.trim()) {
-        errors.Whatsapp = "WhatsApp is required";
+        errors.Whatsapp = t("RSVP.Errors.WhatsApp");
       }
 
       if (
         formData.Email &&
         !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.Email)
       ) {
-        errors.Email = "Please enter a valid email address";
+        errors.Email = t("RSVP.Errors.ValidEmail");
       }
 
       if (formData.Whatsapp && !/^\+?[\d\s-]{10,}$/.test(formData.Whatsapp)) {
-        errors.Whatsapp = "Please enter a valid phone number";
+        errors.Whatsapp = t("RSVP.Errors.PhoneNumber");
       }
       CheckName(2, formData, errors);
       CheckName(3, formData, errors);
@@ -104,7 +107,7 @@ function RSVPForm() {
     if (Number(formData.NumberOfGuests) >= n) {
       const guest = ("Guest" + n) as keyof typeof formData;
       if (!formData[guest]?.trim()) {
-        errors[guest] = "Name is required";
+        errors[guest] = t("RSVP.Errors.Name");
       }
     }
   }
@@ -134,9 +137,9 @@ function RSVPForm() {
     })
       .then((response) => {
         if (response.status === 422) {
-          throw new Error("Please check your form inputs and try again");
+          throw new Error(t("RSVP.Errors.Form"));
         } else if (!response.ok) {
-          throw new Error("Something went wrong. Please try again later.");
+          throw new Error(t("RSVP.Errors.Alert"));
         }
         return response.json();
       })
@@ -160,7 +163,7 @@ function RSVPForm() {
   };
 
   if (submitted) {
-    return <ThankYou />;
+    return <ThankYou t={t} />;
   }
 
   return (
@@ -181,12 +184,12 @@ function RSVPForm() {
             <FormControlLabel
               value="true"
               control={<Radio />}
-              label="I will be attending"
+              label={t("RSVP.Fields.Attending")}
             />
             <FormControlLabel
               value="false"
               control={<Radio />}
-              label="I am unable to attend"
+              label={t("RSVP.Fields.NotAttending")}
             />
           </RadioGroup>
         </FormControl>
@@ -196,11 +199,12 @@ function RSVPForm() {
             formErrors={formErrors}
             telephone={telephone}
             telephoneChanged={(number) => setTelephone(number)}
+            t={t}
           />
         )}
         {attending !== "true" && (
           <TextField
-            label="Name"
+            label={t("RSVP.Fields.Name")}
             name="Name"
             required
             error={!!formErrors.Guest1}
@@ -213,9 +217,9 @@ function RSVPForm() {
           type="submit"
           variant="contained"
           disabled={loading}
-          sx={{ mt: 2 }}
+          sx={{ mt: 2, backgroundColor: "#5c7d74" }}
         >
-          {loading ? <CircularProgress size={24} /> : "RSVP"}
+          {loading ? <CircularProgress size={24} /> : t("RSVP.Fields.RSVP")}
         </Button>
       </Stack>
     </form>
@@ -226,24 +230,25 @@ interface DetailsProps {
   formErrors: Partial<Record<keyof FormData, string>>;
   telephone: string;
   telephoneChanged: (tel: string) => void;
+  t: TFunction;
 }
 
-function Details({ formErrors, telephone, telephoneChanged }: DetailsProps) {
+function Details({ formErrors, telephone, telephoneChanged, t }: DetailsProps) {
   return (
     <>
-      <Guests formErrors={formErrors} />
+      <Guests formErrors={formErrors} t={t} />
 
       <MuiTelInput
         value={telephone}
         onChange={telephoneChanged}
-        label="WhatsApp"
+        label={t("RSVP.Fields.WhatsApp")}
         name="Whatsapp"
         error={!!formErrors.Whatsapp}
         helperText={formErrors.Whatsapp}
       ></MuiTelInput>
 
       <TextField
-        label="Email"
+        label={t("RSVP.Fields.Email")}
         name="Email"
         type="email"
         error={!!formErrors.Email}
@@ -252,14 +257,14 @@ function Details({ formErrors, telephone, telephoneChanged }: DetailsProps) {
       />
 
       <FormControl fullWidth>
-        <InputLabel>Preferred Contact Method</InputLabel>
+        <InputLabel>{t("RSVP.Fields.PreferredContactMethod")}</InputLabel>
         <Select
           name="ContactPreference"
-          label="Preferred Contact Method"
+          label={t("RSVP.Fields.PreferredContactMethod")}
           defaultValue="Whatsapp"
         >
-          <MenuItem value="Whatsapp">Whatsapp</MenuItem>
-          <MenuItem value="Email">Email</MenuItem>
+          <MenuItem value="Whatsapp">{t("RSVP.Fields.WhatsApp")}</MenuItem>
+          <MenuItem value="Email">{t("RSVP.Fields.Email")}</MenuItem>
         </Select>
       </FormControl>
     </>
@@ -268,8 +273,10 @@ function Details({ formErrors, telephone, telephoneChanged }: DetailsProps) {
 
 function Guests({
   formErrors,
+  t,
 }: {
   formErrors: Partial<Record<keyof FormData, string>>;
+  t: TFunction;
 }) {
   const [numberOfGuests, setNumberOfGuests] = useState("1");
 
@@ -298,23 +305,23 @@ function Guests({
   return (
     <>
       <FormControl fullWidth>
-        <InputLabel>Number of Guests</InputLabel>
+        <InputLabel>{t("RSVP.Fields.NumberOfGuests")}</InputLabel>
         <Select
           name="NumberOfGuests"
-          label="Number of Guests"
+          label={t("RSVP.Fields.NumberOfGuests")}
           value={numberOfGuests}
           onChange={handleNumberOfGuestsChange}
         >
-          <MenuItem value={1}>1</MenuItem>
-          <MenuItem value={2}>2</MenuItem>
-          <MenuItem value={3}>3</MenuItem>
-          <MenuItem value={4}>4</MenuItem>
-          <MenuItem value={5}>5</MenuItem>
-          <MenuItem value={6}>6</MenuItem>
-          <MenuItem value={7}>7</MenuItem>
-          <MenuItem value={8}>8</MenuItem>
-          <MenuItem value={9}>9</MenuItem>
-          <MenuItem value={10}>10</MenuItem>
+          <MenuItem value={1}>{t("RSVP.Fields.1")}</MenuItem>
+          <MenuItem value={2}>{t("RSVP.Fields.2")}</MenuItem>
+          <MenuItem value={3}>{t("RSVP.Fields.3")}</MenuItem>
+          <MenuItem value={4}>{t("RSVP.Fields.4")}</MenuItem>
+          <MenuItem value={5}>{t("RSVP.Fields.5")}</MenuItem>
+          <MenuItem value={6}>{t("RSVP.Fields.6")}</MenuItem>
+          <MenuItem value={7}>{t("RSVP.Fields.7")}</MenuItem>
+          <MenuItem value={8}>{t("RSVP.Fields.8")}</MenuItem>
+          <MenuItem value={9}>{t("RSVP.Fields.9")}</MenuItem>
+          <MenuItem value={10}>{t("RSVP.Fields.10")}</MenuItem>
         </Select>
       </FormControl>
 
@@ -322,13 +329,15 @@ function Guests({
         <>
           <TextField
             key={index}
-            label={"Guest " + (index + 1)}
+            label={t("RSVP.Fields.Guest") + " " + (index + 1)}
             name={"Guest" + (index + 1)}
             error={GetError("Guest" + (index + 1), formErrors)}
             helperText={GetErrorText("Guest" + (index + 1), formErrors)}
           />
           <TextField
-            label={"Dietary Requirements Guest " + (index + 1)}
+            label={
+              t("RSVP.Fields.DietaryRequirementsGuest") + " " + (index + 1)
+            }
             name={"DietaryRequirementsGuest" + (index + 1)}
             multiline
             minRows={2}
@@ -341,10 +350,10 @@ function Guests({
   );
 }
 
-function ThankYou() {
+function ThankYou({ t }: { t: TFunction }) {
   return (
     <>
-      <p>Thank you for taking the time to respond.</p>
+      <p>{t("RSVP.Fields.DietaryRequirementsGuest")}</p>
       <p>We cannot wait to see you on the big day!</p>
     </>
   );

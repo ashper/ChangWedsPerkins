@@ -2,8 +2,10 @@ import image from "../assets/IMG(57).jpg";
 import { Button, Typography } from "@mui/material";
 import FlipClockCountdown from "@leenguyen/react-flip-clock-countdown";
 import "@leenguyen/react-flip-clock-countdown/dist/index.css";
+import { useTranslation } from "react-i18next";
 
 function Home({ tabChange }: { tabChange: (arg0: number) => void }) {
+  const { t } = useTranslation();
   const weddingDate = new Date(2025, 7, 2);
 
   return (
@@ -28,6 +30,12 @@ function Home({ tabChange }: { tabChange: (arg0: number) => void }) {
             <FlipClockCountdown
               style={{ justifyContent: "center" }}
               renderMap={[true, true, true, false]}
+              labels={[
+                t("Mobile.Days"),
+                t("Mobile.Hours"),
+                t("Mobile.Minutes"),
+                t(""),
+              ]}
               to={weddingDate}
               digitBlockStyle={{
                 width: 26,

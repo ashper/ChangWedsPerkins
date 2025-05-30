@@ -6,6 +6,7 @@ import RSVP from "./RSVP";
 import MoreOfUs from "./MoreOfUs";
 import FAQ from "./FAQ";
 import Home from "./Home";
+import { useTranslation } from "react-i18next";
 
 function CustomTabPanel({
   children,
@@ -29,6 +30,7 @@ function CustomTabPanel({
 }
 
 function Body() {
+  const { t } = useTranslation();
   const [value, setValue] = useState(0);
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
@@ -50,11 +52,11 @@ function Body() {
             },
           }}
         >
-          <Tab label="Home" />
-          <Tab label="FAQs" />
-          <Tab label="More Of Us" />
-          <Tab label="Travel" />
-          <Tab label="RSVP" />
+          <Tab label={t("Menu.Home")} />
+          <Tab label={t("Menu.FAQs")} />
+          <Tab label={t("Menu.MoreOfUs")} />
+          <Tab label={t("Menu.Travel")} />
+          <Tab label={t("Menu.RSVP")} />
         </Tabs>
       </div>
       <div className="panel">

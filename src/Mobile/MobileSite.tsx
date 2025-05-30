@@ -15,8 +15,11 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import "./MobileSite.css";
 import Body from "./Body";
+import LanguageSwitcher from "../Shared/LanguageSwitcher";
+import { useTranslation } from "react-i18next";
 
 function MobileSite() {
+  const { t } = useTranslation();
   const [password, setPassword] = useState(
     window.localStorage.getItem("password")
   );
@@ -40,27 +43,42 @@ function MobileSite() {
       <List>
         <ListItem disablePadding disableGutters>
           <ListItemButton>
-            <ListItemText primary="Home" onClick={() => setValue(0)} />
+            <ListItemText
+              primary={t("Menu.Home")}
+              onClick={() => setValue(0)}
+            />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding disableGutters>
           <ListItemButton>
-            <ListItemText primary="FAQs" onClick={() => setValue(1)} />
+            <ListItemText
+              primary={t("Menu.FAQs")}
+              onClick={() => setValue(1)}
+            />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding disableGutters>
           <ListItemButton>
-            <ListItemText primary="More Of Us" onClick={() => setValue(2)} />
+            <ListItemText
+              primary={t("Menu.MoreOfUs")}
+              onClick={() => setValue(2)}
+            />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding disableGutters>
           <ListItemButton>
-            <ListItemText primary="Travel" onClick={() => setValue(3)} />
+            <ListItemText
+              primary={t("Menu.Travel")}
+              onClick={() => setValue(3)}
+            />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding disableGutters>
           <ListItemButton>
-            <ListItemText primary="RSVP" onClick={() => setValue(4)} />
+            <ListItemText
+              primary={t("Menu.RSVP")}
+              onClick={() => setValue(4)}
+            />
           </ListItemButton>
         </ListItem>
       </List>
@@ -88,6 +106,9 @@ function MobileSite() {
             <MenuIcon />
           </IconButton>
           <Typography style={{ fontSize: "28px" }}>AP & KQ</Typography>
+          <div style={{ marginLeft: "auto", marginRight: "0" }}>
+            <LanguageSwitcher></LanguageSwitcher>
+          </div>
         </Toolbar>
       </AppBar>
       <Drawer

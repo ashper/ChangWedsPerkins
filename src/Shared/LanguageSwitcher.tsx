@@ -15,7 +15,6 @@ function LanguageSwitcher() {
         <span
           key={lng}
           style={{
-            fontWeight: i18n.resolvedLanguage === lng ? "bold" : "normal",
             cursor: "pointer",
             padding: "5px",
           }}
@@ -25,7 +24,10 @@ function LanguageSwitcher() {
           }}
         >
           <img
-            style={{ width: "32px", verticalAlign: "middle" }}
+            style={{
+              width: i18n.resolvedLanguage === lng ? "38px" : "32px",
+              verticalAlign: "middle",
+            }}
             src={languages[lng].flag}
           ></img>
         </span>
