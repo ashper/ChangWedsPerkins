@@ -81,6 +81,9 @@ function FAQS() {
           <Typography style={{ textAlign: "left" }}>{t("FAQ.8.a")}</Typography>
         </AccordionDetails>
       </Accordion>
+      <p style={{ paddingLeft: "10px", paddingRight: "10px" }}>
+        {t("FAQ.ContactUs")}
+      </p>
     </>
   );
 }

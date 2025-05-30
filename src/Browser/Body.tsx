@@ -38,7 +38,7 @@ function Body() {
   };
 
   return (
-    <div className="bodyContainer">
+    <div className="bodyContainerDesktop">
       <div className="tabs">
         <Tabs
           value={value}

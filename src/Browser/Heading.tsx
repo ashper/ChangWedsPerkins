@@ -12,7 +12,8 @@ function Heading() {
     <>
       <div className="heading">{t("Heading.Title")}</div>
       <div className="paragraph">
-        {t("Heading.p1")} • {t("Heading.p2")} • {`${days} ` + t("Heading.p3")}
+        {t("Heading.p1")} | {t("Heading.p2")} |{" "}
+        {t("Heading.p3").replace("NN", `${days}`)}
       </div>
       <div style={{ position: "absolute", top: "0px", right: "0px" }}>
         <LanguageSwitcher></LanguageSwitcher>

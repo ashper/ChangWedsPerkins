@@ -29,6 +29,9 @@ i18n
           },
           FAQ: {
             Title: "Wedding FAQs",
+            ContactUs: `For any questions or
+                  concerns, please feel free to contact us at
+                  changwedsperkins@gmail.com!`,
             1: {
               q: "What date should I rsvp by?",
               a: "Please RSVP by June 30th Monday.",
@@ -85,9 +88,7 @@ i18n
               a: `We will not have a traditional gift registry and your presence is
                   our greatest gift of all! In lieu of gifts, we will have a cash
                   registry box that will be available at the guest registration table
-                  if you wish to bless us with a cash gift. For any questions or
-                  concerns, please feel free to contact us at
-                  changwedsperkins@gmail.com!`,
+                  if you wish to bless us with a cash gift.`,
             },
           },
           RSVP: {
@@ -131,7 +132,7 @@ i18n
             Title: "Kaiqing & Ashley",
             p1: "2ND AUGUST 2025",
             p2: "CLAUDINE, SINGAPORE",
-            p3: "DAYS TO GO!",
+            p3: "NN DAYS TO GO!",
           },
           Mobile: {
             RSVP: "RSVP",
@@ -158,6 +159,8 @@ i18n
           },
           FAQ: {
             Title: "Wedding FAQs",
+            ContactUs:
+              "如有任何疑问，请随时通过 changwedsperkins@gmail.com 与我们联系！",
             1: {
               q: "确认出席 (RSVP) 的截止日期是几时？",
               a: "请于6月30日（星期一）前回复出席。",
@@ -195,29 +198,28 @@ i18n
             },
             8: {
               q: "有婚礼礼物/礼金登记吗？",
-              a: `您的到来已是我们最珍贵的礼物！若您希望以礼金祝福我们和表达心意，宾客签到处将会设有贺礼礼金箱。非常感谢您对我们的爱戴和祝福！
-                  如有任何疑问，请随时通过 changwedsperkins@gmail.com 与我们联系！`,
+              a: `您的到来已是我们最珍贵的礼物！若您希望以礼金祝福我们和表达心意，宾客签到处将会设有贺礼礼金箱。非常感谢您对我们的爱戴和祝福！`,
             },
           },
           RSVP: {
             Errors: {
-              Name: "Name is required",
-              Email: "Email is required",
-              WhatsApp: "WhatsApp is required",
-              ValidEmail: "Please enter a valid email address",
-              PhoneNumber: "Please enter a valid phone number",
-              Form: "Please check your form inputs and try again",
-              Alert: "Something went wrong. Please try again later",
+              Name: "必填写姓名",
+              Email: "必填写电子邮件地址",
+              WhatsApp: "必填写手机或Whatsapp号吗",
+              ValidEmail: "请输入有效的电子邮件地址",
+              PhoneNumber: "请输入有效的联络号吗",
+              Form: "请检查您填写的表格内容，再次填写正确的资料",
+              Alert: "系统出现问题，请稍后再试",
             },
             Fields: {
-              Attending: "I will be attending",
-              NotAttending: "I am unable to attend",
+              Attending: "我可以出席",
+              NotAttending: "我不能出席",
               Name: "Name",
               WhatsApp: "WhatsApp",
-              Email: "Email",
-              PreferredContactMethod: "Preferred Contact Method",
-              RSVP: "RSVP",
-              NumberOfGuests: "Number of Guests",
+              Email: "电子邮件",
+              PreferredContactMethod: "首选联络方式",
+              RSVP: "RSVP 确认出席",
+              NumberOfGuests: "出席人数",
               1: "1",
               2: "2",
               3: "3",
@@ -228,19 +230,25 @@ i18n
               8: "8",
               9: "9",
               10: "10",
-              Guest: "Guest",
-              DietaryRequirementsGuest: "Dietary Requirements Guest",
+              Guest: "来宾",
+              DietaryRequirementsGuest: "饮食需求",
               ThankYou: {
-                p1: "Thank you for taking the time to respond.",
-                p2: "We cannot wait to see you on the big day!",
+                p1: "感谢您拨冗回复出席",
+                p2: "我们敬请期待在我们的大喜之日与您见面！",
               },
             },
           },
           Heading: {
             Title: "Kaiqing & Ashley",
-            p1: "2ND AUGUST 2025",
-            p2: "CLAUDINE, SINGAPORE",
-            p3: "DAYS TO GO!",
+            p1: "2025 年 8 月 2 日",
+            p2: "CLAUDINE, 新加坡",
+            p3: "倒数 NN 天",
+          },
+          Mobile: {
+            RSVP: "确认出席",
+            Days: "Days",
+            Hours: "Hours",
+            Minutes: "Minutes",
           },
         },
       },

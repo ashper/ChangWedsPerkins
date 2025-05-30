@@ -1,10 +1,13 @@
 .heading {
   font-family: "Madina", serif;
   font-size: 120px;
+
+  margin-bottom: -30px;
 }
 
 .paragraph {
-  font-size: 20px;
+  font-size: 22px;
+  font-weight: 500;
 }
 
 .box {

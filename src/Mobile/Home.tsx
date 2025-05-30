@@ -65,14 +65,14 @@ function Home({ tabChange }: { tabChange: (arg0: number) => void }) {
                 style={{
                   backgroundColor: "#5c7d74",
                   marginLeft: "20px",
-                  padding: "0 0 0 0",
+                  padding: "0 5px 0 5px",
                   boxShadow: "none",
                   marginTop: "6px",
                   marginBottom: "6px",
                 }}
                 onClick={() => tabChange(4)}
               >
-                RSVP
+                {t("Mobile.RSVP")}
               </Button>
             </div>
           </div>

@@ -23,7 +23,9 @@ function BrowserSite() {
         {loggedIn ? (
           <Body></Body>
         ) : (
-          <Login handleChange={passwordChanged}></Login>
+          <div style={{ paddingLeft: "20px", paddingRight: "20px" }}>
+            <Login handleChange={passwordChanged}></Login>
+          </div>
         )}
       </div>
     </div>

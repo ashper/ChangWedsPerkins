@@ -35,7 +35,9 @@ body {
   display: flex;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #5c7d74;
+  /* background-color: #5c735c; */
+  background-image: url("./assets/StillLifeCrop.jpg");
+  background-size: contain;
 }
 
 h1 {

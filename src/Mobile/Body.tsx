@@ -40,7 +40,7 @@ function Body({
   tabChange: (value: number) => void;
 }) {
   return (
-    <div className="bodyContainer">
+    <div className="bodyContainerMobile">
       <div className="panel">
         <CustomTabPanel value={value} index={0}>
           <Home tabChange={(arg0) => tabChange(arg0)}></Home>

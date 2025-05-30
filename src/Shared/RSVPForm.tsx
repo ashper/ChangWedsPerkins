@@ -353,8 +353,8 @@ function Guests({
 function ThankYou({ t }: { t: TFunction }) {
   return (
     <>
-      <p>{t("RSVP.Fields.DietaryRequirementsGuest")}</p>
-      <p>We cannot wait to see you on the big day!</p>
+      <p>{t("RSVP.Fields.ThankYou.p1")}</p>
+      <p>{t("RSVP.Fields.ThankYou.p2")}</p>
     </>
   );
 }
