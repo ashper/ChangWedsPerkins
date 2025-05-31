@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Login from "../Shared/Login";
+// import Login from "../Shared/Login";
 import {
   AppBar,
   Box,
@@ -20,16 +20,16 @@ import { useTranslation } from "react-i18next";
 
 function MobileSite() {
   const { t } = useTranslation();
-  const [password, setPassword] = useState(
-    window.localStorage.getItem("password")
-  );
+  // const [password, setPassword] = useState(
+  //   window.localStorage.getItem("password")
+  // );
 
-  const loggedIn = password === "02082025";
+  // const loggedIn = password === "02082025";
 
-  function passwordChanged(password: string) {
-    setPassword(password);
-    window.localStorage.setItem("password", password);
-  }
+  // function passwordChanged(password: string) {
+  //   setPassword(password);
+  //   window.localStorage.setItem("password", password);
+  // }
 
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(0);
@@ -124,17 +124,17 @@ function MobileSite() {
         {DrawerList}
       </Drawer>
       <div className="mobileBody">
-        {loggedIn ? (
-          <Body
-            value={value}
-            tabChange={(value: number) => setValue(value)}
-          ></Body>
-        ) : (
+        {/* {loggedIn ? ( */}
+        <Body
+          value={value}
+          tabChange={(value: number) => setValue(value)}
+        ></Body>
+        {/* ) : (
           <div style={{ padding: "20px" }}>
             {" "}
             <Login handleChange={passwordChanged}></Login>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );
